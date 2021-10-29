@@ -27,6 +27,17 @@ async function run() {
       const result = await servicesCollection.find({}).toArray();
       res.send(result);
     });
+
+    // Order Place
+
+    app.get("/orderPlace/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const service = await servicesCollection.findOne(query);
+
+      // console.log("load user with id", id);
+      res.send(service);
+    });
   } finally {
     // await client.close();
   }
