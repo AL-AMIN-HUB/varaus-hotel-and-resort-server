@@ -29,6 +29,12 @@ async function run() {
       res.send(result);
     });
 
+    // orders get api
+    app.get("/reviewOrder", async (req, res) => {
+      const result = await ordersCollection.find({}).toArray();
+      res.send(result);
+    });
+
     // Order Place
     app.get("/orderPlace/:id", async (req, res) => {
       const id = req.params.id;
