@@ -38,7 +38,16 @@ async function run() {
       res.send(service);
     });
 
-    // order
+    // order post
+
+    app.post("/reviewOrder", async (req, res) => {
+      const orders = req.body;
+      console.log("hitting post api", orders);
+
+      const result = await ordersCollection.insertOne(orders);
+      console.log(result);
+      res.json(result);
+    });
   } finally {
     // await client.close();
   }
