@@ -30,22 +30,20 @@ async function run() {
     });
 
     // Order Place
-
     app.get("/orderPlace/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const service = await servicesCollection.findOne(query);
-
       // console.log("load user with id", id);
       res.send(service);
     });
 
-    // post
+    // order
     app.post("/orderPlace", async (req, res) => {
-      const orders = req.body;
-      console.log("hitting post api", orders);
+      const service = req.body;
+      console.log("hitting post api", service);
 
-      const result = await ordersCollection.insertOne(orders);
+      const result = await ordersCollection.insertOne(service);
       console.log(result);
       res.json(result);
     });
@@ -54,12 +52,10 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
 //
 app.get("/", (req, res) => {
   res.send("Happy Assignment Hotel and Resort");
 });
-
 app.listen(port, () => {
   console.log("listening on port", port);
 });
