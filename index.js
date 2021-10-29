@@ -34,19 +34,11 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const service = await servicesCollection.findOne(query);
-      // console.log("load user with id", id);
+      console.log("load user with id", id);
       res.send(service);
     });
 
     // order
-    app.post("/orderPlace", async (req, res) => {
-      const service = req.body;
-      console.log("hitting post api", service);
-
-      const result = await ordersCollection.insertOne(service);
-      console.log(result);
-      res.json(result);
-    });
   } finally {
     // await client.close();
   }
