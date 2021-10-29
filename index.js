@@ -29,10 +29,10 @@ async function run() {
       res.send(result);
     });
 
-    // orders get api
+    // order get api
     app.get("/reviewOrder", async (req, res) => {
       const result = await ordersCollection.find({}).toArray();
-      res.send(result);
+      res.send(result); 
     });
 
     // Order Place
