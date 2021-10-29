@@ -40,12 +40,12 @@ async function run() {
       res.send(service);
     });
 
-    // order
+    // post
     app.post("/orderPlace", async (req, res) => {
-      const service = req.body;
-      console.log("hitting post api", service);
+      const orders = req.body;
+      console.log("hitting post api", orders);
 
-      const result = await ordersCollection.insertOne(service);
+      const result = await ordersCollection.insertOne(orders);
       console.log(result);
       res.json(result);
     });
