@@ -41,7 +41,7 @@ async function run() {
     });
 
     // order
-    app.post("/orderPlace/:id", async (req, res) => {
+    app.post("/orderPlace", async (req, res) => {
       const service = req.body;
       console.log("hitting post api", service);
 
