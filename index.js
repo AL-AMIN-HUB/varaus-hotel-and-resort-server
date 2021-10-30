@@ -29,10 +29,10 @@ async function run() {
       res.send(result);
     });
 
-    // order get api
+    // get order from database
     app.get("/reviewOrder", async (req, res) => {
       const result = await ordersCollection.find({}).toArray();
-      res.send(result); 
+      res.send(result);
     });
 
     // Order Place
@@ -44,8 +44,7 @@ async function run() {
       res.send(service);
     });
 
-    // order post
-
+    // order post request
     app.post("/reviewOrder", async (req, res) => {
       const orders = req.body;
       console.log("hitting post api", orders);
