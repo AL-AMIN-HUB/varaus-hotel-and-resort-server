@@ -53,6 +53,21 @@ async function run() {
       console.log(result);
       res.json(result);
     });
+
+    // post new services
+    app.post("/services", async (req, res) => {
+      const newService = req.body;
+      const result = await servicesCollection.insertOne(newService);
+      res.json(result);
+    });
+
+    // delete order
+    app.delete("/reviewOrder/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const deleteOrder = await ordersCollection.deleteOne(query);
+      res.send(deleteOrder);
+    });
   } finally {
     // await client.close();
   }
