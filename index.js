@@ -23,13 +23,13 @@ async function run() {
     const servicesCollection = database.collection("services");
     const ordersCollection = database.collection("orders");
 
-    // get service from database
+    // GET service from database
     app.get("/services", async (req, res) => {
       const result = await servicesCollection.find({}).toArray();
       res.send(result);
     });
 
-    // get order from database
+    // GET order from database
     app.get("/reviewOrder", async (req, res) => {
       const result = await ordersCollection.find({}).toArray();
       res.send(result);
@@ -44,7 +44,7 @@ async function run() {
       res.send(service);
     });
 
-    // order post request
+    // order POST request
     app.post("/reviewOrder", async (req, res) => {
       const orders = req.body;
       console.log("hitting post api", orders);
@@ -54,14 +54,14 @@ async function run() {
       res.json(result);
     });
 
-    // post new services
+    // POST new services
     app.post("/services", async (req, res) => {
       const newService = req.body;
       const result = await servicesCollection.insertOne(newService);
       res.json(result);
     });
 
-    // delete order
+    // DELETE order
     app.delete("/reviewOrder/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -69,7 +69,7 @@ async function run() {
       res.send(deleteOrder);
     });
 
-    // my order get
+    // my order GET api
     app.get("/myOrder/:email", async (req, res) => {
       const result = await ordersCollection.find({ email: req.params.email }).toArray();
       res.send(result);
