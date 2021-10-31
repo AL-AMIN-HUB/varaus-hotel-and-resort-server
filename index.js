@@ -68,6 +68,12 @@ async function run() {
       const deleteOrder = await ordersCollection.deleteOne(query);
       res.send(deleteOrder);
     });
+
+    // my order get
+    app.get("/myOrder/:email", async (req, res) => {
+      const result = await ordersCollection.find({ email: req.params.email }).toArray();
+      res.send(result);
+    });
   } finally {
     // await client.close();
   }
